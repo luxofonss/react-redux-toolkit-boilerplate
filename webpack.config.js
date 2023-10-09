@@ -50,10 +50,10 @@ module.exports = (env, argv) => {
         {
           test: /\.(s[ac]ss|css)$/, // duyệt các file sass || scss || css
           use: [
-            MiniCssExtractPlugin.loader,
+            { loader: MiniCssExtractPlugin.loader },
             {
               loader: 'css-loader', // dùng import 'filename.css' trong file tsx, ts
-              options: { sourceMap: !isProduction } // Hiển thị sourcemap ở môi trường dev cho dễ debug
+              options: { sourceMap: !isProduction, modules: true } // Hiển thị sourcemap ở môi trường dev cho dễ debug
             },
             {
               loader: 'sass-loader', // biên dịch sass sang css

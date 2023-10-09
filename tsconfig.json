@@ -25,5 +25,5 @@
       "@store/*": ["src/store/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "declaration.d.ts"]
 }

@@ -1,20 +1,35 @@
-import AppLayout from '@components/layouts/AppLayout'
+import AuthLayout from '@components/layouts/AuthLayout'
 import SignIn from '@container/authentication/SignIn'
 import NotFound from '@container/common/NotFound'
 import ServerError from '@container/common/ServerError'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
-const AuthRoutes: React.FC = (): JSX.Element => {
-  return (
-    <Routes>
-      <Route path='/' element={<AppLayout />}>
-        <Route path='/sign-in' element={<SignIn />} />
-        <Route path='/404' element={<NotFound />} />
-        <Route path='/500' element={<ServerError />} />
-        <Route path='*' element={<Navigate to='/404' replace />} />
-      </Route>
-    </Routes>
-  )
-}
+import type { RouteObject } from 'react-router-dom'
 
-export default AuthRoutes
+const authRoutes: RouteObject[] = [
+  {
+    errorElement: <Navigate to='/500' replace />,
+    path: '/',
+    element: <AuthLayout />,
+    children: [
+      {
+        path: '/sign-in',
+        element: <SignIn />
+      },
+      {
+        path: '/404',
+        element: <NotFound />
+      },
+      {
+        path: '/500',
+        element: <ServerError />
+      },
+      {
+        path: '*',
+        element: <Navigate to='/404' replace />
+      }
+    ]
+  }
+]
+
+export default authRoutes

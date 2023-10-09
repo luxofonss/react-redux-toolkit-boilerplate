@@ -1,12 +1,21 @@
 import { FC } from 'react'
-import './shared/styles/app.scss'
-import AppRoutes from './routes/appRoutes'
-import AuthRoutes from './routes/authRoutes'
+import appRoutes from './routes/appRoutes'
+import authRoutes from './routes/authRoutes'
 import { ROLE } from '@shared/constants'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 const App: FC = () => {
   const role = null
-  return <div>{role == ROLE.USER ? <AppRoutes /> : <AuthRoutes />}</div>
+  let accessRoutes = null
+  if (role === ROLE.USER) {
+    accessRoutes = appRoutes
+  } else {
+    accessRoutes = authRoutes
+  }
+
+  const router = createBrowserRouter(accessRoutes)
+
+  return <RouterProvider router={router} />
 }
 
 export default App
