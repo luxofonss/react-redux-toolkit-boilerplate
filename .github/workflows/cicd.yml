@@ -28,8 +28,8 @@ jobs:
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          args: -Dsonar.projectKey=luxofonss_react-redux-toolkit-boilerplate
-            -Dsonar.organization=luxofonss
+          args: -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
 
   deploy:
     runs-on: ubuntu-latest
