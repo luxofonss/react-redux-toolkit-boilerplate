@@ -1,33 +1,32 @@
-name: CI/CD
-
+name: deployment
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Build and push Docker image
+        run: |
+          docker build -t react-boilerplate .
+          docker tag react-boilerplate:latest registry.example.com/react-boilerplate:latest
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push registry.example.com/react-boilerplate:latest
+
+      - name: SSH into VPS and deploy
+        uses: appleboy/ssh-action@v0.1.7
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: npm install
-
-      # - name: Run the tests
-      #   run: npm test
-
-      - name: Build
-        run: npm run build
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
+          script: |
+            docker stop react-boilerplate || true
+            docker rm react-boilerplate || true
+            docker pull registry.example.com/react-boilerplate:latest
+            docker run -d --name react-boilerplate -p 80:80 registry.example.com/react-boilerplate:latest
