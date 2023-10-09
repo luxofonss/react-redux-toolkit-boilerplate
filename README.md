@@ -1,2 +1,2 @@
-# react-redux-toolkit-boilerplate 1
+# react-redux-toolkit-boilerplate
  
