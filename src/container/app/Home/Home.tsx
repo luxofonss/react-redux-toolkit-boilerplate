@@ -5,7 +5,12 @@ const STATUS = {
   NORMAL: 'normal'
 }
 
-export default function Home({ page, children }: { page: string; children: React.ReactNode }) {
+interface IHomeProps {
+  readonly page: string
+  readonly children: React.ReactNode
+}
+
+const Home: React.FC<IHomeProps> = ({ page, children }) => {
   const [status, setStatus] = useState(STATUS.NORMAL)
 
   const onMouseEnter = () => {
@@ -22,3 +27,5 @@ export default function Home({ page, children }: { page: string; children: React
     </a>
   )
 }
+
+export default Home
