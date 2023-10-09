@@ -1,9 +1,24 @@
-function Home() {
-  return (
-    <div>
-      <h1>This is the home page</h1>
-    </div>
-  )
+import { useState } from 'react'
+
+const STATUS = {
+  HOVERED: 'hovered',
+  NORMAL: 'normal'
 }
 
-export default Home
+export default function Home({ page, children }: { page: string; children: React.ReactNode }) {
+  const [status, setStatus] = useState(STATUS.NORMAL)
+
+  const onMouseEnter = () => {
+    setStatus(STATUS.HOVERED)
+  }
+
+  const onMouseLeave = () => {
+    setStatus(STATUS.NORMAL)
+  }
+
+  return (
+    <a className={status} href={page || '#'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+      {children}
+    </a>
+  )
+}
