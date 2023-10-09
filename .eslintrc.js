@@ -26,9 +26,7 @@ module.exports = {
         paths: [path.resolve(__dirname)],
         extensions: ['.js', '.jsx', '.ts', '.tsx']
       },
-      typescript: {
-        project: path.resolve(__dirname, './tsconfig.json')
-      }
+      typescript: {} // this loads <rootdir>/tsconfig.json to eslint
     }
   },
   env: {
