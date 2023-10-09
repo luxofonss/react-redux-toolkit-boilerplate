@@ -26,7 +26,7 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@de2e56b42aa84d0b1c5b622644ac17e505c9a049
         env:
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
-          SONAR_TOKEN: 7689110674e3cea0f46d3c79d21a6b502b9b0546
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: -Dsonar.projectKey=luxofonss_react-redux-toolkit-boilerplate
             -Dsonar.organization=luxofonss
