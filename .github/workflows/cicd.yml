@@ -49,9 +49,9 @@ jobs:
       - name: SSH into VPS and deploy
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PASSWORD }}
+          host: 35.240.135.176
+          username: quyen
+          password: luxofonsadmin
           script: |
             sudo docker stop react-boilerplate || true
             sudo docker rm react-boilerplate || true
