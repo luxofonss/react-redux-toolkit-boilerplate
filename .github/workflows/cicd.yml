@@ -41,19 +41,19 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          sudo docker build -t react-boilerplate .
-          sudo docker tag react-boilerplate:latest luxofons/react-boilerplate:latest
-          sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          sudo docker push luxofons/react-boilerplate:latest
+          docker build -t react-boilerplate .
+          docker tag react-boilerplate:latest luxofons/react-boilerplate:latest
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push luxofons/react-boilerplate:latest
 
       - name: SSH into VPS and deploy
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: 35.240.135.176
-          username: quyen
-          password: luxofonsadmin
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            sudo docker stop react-boilerplate || true
-            sudo docker rm react-boilerplate || true
-            sudo docker pull luxofons/react-boilerplate:latest
-            sudo docker run -d --name react-boilerplate -p 3000:80 luxofons/react-boilerplate:latest
+            docker stop react-boilerplate || true
+            docker rm react-boilerplate || true
+            docker pull luxofons/react-boilerplate:latest
+            docker run -d --name react-boilerplate -p 80:80 luxofons/react-boilerplate:latest

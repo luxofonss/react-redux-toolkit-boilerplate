@@ -19,20 +19,7 @@ FROM nginx:alpine
 # Copy folder đã được build vào folder chạy của nginx.
 COPY --from=build /app/dist/ /var/www/dist/
 
-# Copy file cấu hình chạy cho nginx (file nginx.conf sẽ tạo ở bước tiếp theo)
+# Copy file cấu hình chạy cho nginx
 COPY --from=build /app/.nginx/nginx.conf /etc/nginx/nginx.conf
 
 CMD ["nginx", "-g", "daemon off;"]
-
-
-# # Copy config nginx
-# COPY --from=build /app/.nginx/nginx.conf /etc/nginx/conf.d/default.conf
-# WORKDIR /usr/share/nginx/html
-# # Remove default nginx static assets
-# RUN rm -rf ./*
-# # Copy static assets from builder stage
-# COPY --from=build /app/dist .
-# # Containers run nginx with global directives and daemon off
-# ENTRYPOINT ["nginx", "-g", "daemon off;"]
-
-
