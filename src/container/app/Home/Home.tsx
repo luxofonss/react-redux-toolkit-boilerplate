@@ -23,7 +23,7 @@ const Home: React.FC<IHomeProps> = ({ page, children }) => {
 
   return (
     <a className={status} href={page || '#'} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-      {children} 2
+      {children} test
     </a>
   )
 }
