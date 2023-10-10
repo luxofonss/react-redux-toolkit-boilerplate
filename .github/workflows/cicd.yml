@@ -56,4 +56,4 @@ jobs:
             sudo docker stop react-boilerplate || true
             sudo docker rm react-boilerplate || true
             sudo docker pull luxofons/react-boilerplate:latest
-            sudo docker run -d --name react-boilerplate -p 80:80 luxofons/react-boilerplate:latest
+            sudo docker run -d --name react-boilerplate -p 3000:80 luxofons/react-boilerplate:latest
