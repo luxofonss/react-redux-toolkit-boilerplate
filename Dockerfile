@@ -11,12 +11,13 @@ COPY . /app
 ENV CI=true
 ENV PORT=3000
 CMD [ "npm", "start" ]
+
 FROM development AS build
 RUN npm run build
 # 2. For Nginx setup
 FROM nginx:alpine
 # Copy folder đã được build vào folder chạy của nginx.
-COPY --from=build /app/build/ /var/www/dist/
+COPY --from=build /app/dist/ /var/www/dist/
 
 # Copy file cấu hình chạy cho nginx (file nginx.conf sẽ tạo ở bước tiếp theo)
 COPY --from=build /app/.nginx/nginx.conf /etc/nginx/nginx.conf
