@@ -22,13 +22,6 @@ COPY --from=build /app/dist/ /var/www/dist/
 # Copy file cấu hình chạy cho nginx (file nginx.conf sẽ tạo ở bước tiếp theo)
 COPY --from=build /app/.nginx/nginx.conf /etc/nginx/nginx.conf
 
-# Cài đặt curl cho câu lệnh check HEALTH
-RUN sudo apt-get update && sudo apt-get install -y curl && sudo apt-get clean
-
-# Kiểm tra trạng thái của container sau khi chạy
-HEALTHCHECK --interval=1m --timeout=3s \
-  CMD curl -f http://localhost || exit 1
-
 CMD ["nginx", "-g", "daemon off;"]
 
 
