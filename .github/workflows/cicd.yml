@@ -51,7 +51,7 @@ jobs:
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.VPS_KEY }}
+          key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCPqajel5oM/Q9nCvDhMbp0wBzlbxKRLCNviLum/wZb4sGujkH74kYHg06jLCZlYcYTY50zjDNPjG2SC7tAm/0PtOxsiO7ucjGs2RVEthL84x5cc1yUTfBzaJ/OKj86KPHNMtnrd33CYZW7rVyaNxmzCutxbZcOjfmFGZXN/KGzaZva/l0B5jmpDlEI6X16bpgFlSWNjEh1JO/0dqvTPTt+E3Wbg5UgIg6yeUMTe4cdzSpRK+C0SCJAvncXFOTTZmbzz91Tezg9M1ngLkYyQ4DwjA/2YzJG6jaTWy8b3fsQjOANCC3Sdo4/q5kfwK277fIlFPwl3Rwy3l1h7lV3Q2GN6CZ2nNnB6FF/Rr/pbe5C9EwrxO0e8Q9NkdnU0/AcXStc/qVzI4Bq51tQRykmMY0xEZK93Gg0n1DtXeyH2Zida0tn4sO1U2Scvq2Tpa+1opZTpdSieip/0hTIv2Y3zaj6jA5DY4T4r98la8EEMdtinaioqL8adebNJIOIOzbRLgfyAKnx3mJrBdyJYQolzHHQnu8DsHxKX+ooSrkh+IdRLEm4M6Ysn/8J8KlQ0Wdc4nNUOy67K7Drm/HvzlQqKDRySFlfYyV/8yZxoSQqzSO+R1DUbcKy4nA2YA4uIHWy5Ri3W+MKst8RUlVW/r9rdZaGH4t5j0WLcJtQ0uIX9YioIQ== quyen@quyen-ubuntu'
           script: |
             docker stop react-boilerplate || true
             docker rm react-boilerplate || true
