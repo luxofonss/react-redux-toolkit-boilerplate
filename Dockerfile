@@ -23,7 +23,7 @@ COPY --from=build /app/dist/ /var/www/dist/
 COPY --from=build /app/.nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Cài đặt curl cho câu lệnh check HEALTH
-RUN apt-get update && apt-get install -y curl
+RUN sudo apt-get update && sudo apt-get install -y curl && sudo apt-get clean
 
 # Kiểm tra trạng thái của container sau khi chạy
 HEALTHCHECK --interval=1m --timeout=3s \
