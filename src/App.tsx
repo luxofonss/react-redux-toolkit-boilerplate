@@ -5,7 +5,7 @@ import { ROLE } from '@shared/constants'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 const App: FC = () => {
-  const role = null
+  const role = ROLE.USER
   let accessRoutes = null
   if (role === ROLE.USER) {
     accessRoutes = appRoutes
